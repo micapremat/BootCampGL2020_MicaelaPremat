@@ -1,0 +1,21 @@
+package clase1JavaDebug;
+
+import java.util.ArrayList;
+
+public class JavaDebug {
+
+	public static void main(String[] args) {
+		final Celula celula = new Celula();
+		final Referente referente = new Referente("GL666","Rodrigo Riquelme");
+		final Alumno alumnoUno = new Alumno(1,"Juan Perez");
+		final Alumno alumnoDos = new Alumno(2, "Pedro Sanchez");
+		final ArrayList<Alumon> alumnos = new ArrayList<>();
+		
+		alumnos.add(alumnoUno);
+		alumnos.add(alumnoDos);
+		
+		
+
+	}
+
+}

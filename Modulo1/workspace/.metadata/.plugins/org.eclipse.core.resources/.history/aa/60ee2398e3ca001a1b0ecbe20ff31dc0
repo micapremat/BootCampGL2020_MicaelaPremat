@@ -1,0 +1,10 @@
+package clase1JavaDebug;
+
+public class JavaDebug {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
