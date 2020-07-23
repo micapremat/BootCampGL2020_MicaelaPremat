@@ -1,11 +1,11 @@
-package ejercicio4seis;
+package ejercico4diez;
 
-public class ArrayDias {
+public class ArrayDiasForEach {
 
 	public static void main(String[] args) {
 		String[] dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
-		for(int i=0; i<dias.length; i++ ) {
-			System.out.println(dias[i]);
+		for(String dia: dias ) {
+			System.out.println(dia);
 		}
 
 	}
