@@ -14,10 +14,10 @@ public class CategoryServiceImpl{
 	}
 	
 	public void read() {
-		for(int i = 0; i < listCategory.getListaCategorias().size(); i++) {
-			System.out.println("id categoria: " + listCategory.getListaCategorias().get(i).getId());
-			System.out.println("nombre: " + listCategory.getListaCategorias().get(i).getName());
-			System.out.println("descripcion: " + listCategory.getListaCategorias().get(i).getDescription());
+		for(Category listCat: listCategory.getListaCategorias() ) {
+			System.out.println("ID Categoría: " + listCat.getId());
+			System.out.println("Nombre: " + listCat.getName());
+			System.out.println("Descripción: " + listCat.getDescription());
 		}
 	}
 		
@@ -26,25 +26,25 @@ public class CategoryServiceImpl{
 	}
 	
 	public void remove(long id) {
-		for(int i = 0; i < listCategory.getListaCategorias().size(); i++) {
-			Category category = listCategory.getListaCategorias().get(i);
-			if (category.getId() == id) {
-				listCategory.getListaCategorias().remove(i);
+		for(Category listCat: new ArrayList<Category>(listCategory.getListaCategorias()) ) {
+			if (listCat.getId() == id) {
+				listCategory.getListaCategorias().remove(listCat);
 			}
 		}
 	}
 	
 	public void modify(long idElementoBuscado, Category elemento) {
 		boolean encontrado = false;
-		for(int i = 0; i < listCategory.getListaCategorias().size(); i++) {
-			Category category = listCategory.getListaCategorias().get(i);
-			if (category.getId() == idElementoBuscado) {
-				listCategory.getListaCategorias().set(i,elemento);
+		for(Category listCat: listCategory.getListaCategorias() ) {
+			if (listCat.getId() == idElementoBuscado) {
+				listCat.setId(idElementoBuscado);
+				listCat.setDescription(elemento.getDescription());
+				listCat.setName(elemento.getName());
 				encontrado = true;
 			}
 		}
 		if(!encontrado) {
-			System.out.println("El elemento no se encuentra en la lista");
+			System.out.println("El elemento con ID: " + idElementoBuscado + " no se encuentra en la lista");
 		}
 	}
 }

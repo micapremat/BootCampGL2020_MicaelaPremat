@@ -1,6 +1,7 @@
 package ar.com.gl.shop.product.services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import ar.com.gl.shop.product.model.Stock;
 import ar.com.gl.shop.product.repository.RepositoryImpl;
@@ -15,10 +16,12 @@ public class StockServiceImpl {
 	}
 	
 	public void read() {
-		for(int i = 0; i < listStock.getListaStock().size(); i++) {
-			System.out.println("ID stock: " + listStock.getListaStock().get(i).getId());
-			System.out.println("Cantidad: " + listStock.getListaStock().get(i).getQuantity());
-			System.out.println("Codigo de localidad: " + listStock.getListaStock().get(i).getLocationCode());
+		Iterator<Stock> stock = listStock.getListaStock().iterator();
+		while(stock.hasNext()) {
+			Stock elem = stock.next();
+			System.out.println("ID stock: " + elem.getId());
+			System.out.println("Cantidad: " + elem.getQuantity());
+			System.out.println("Código de localidad: " + elem.getLocationCode());
 		}
 	}
 		
@@ -27,20 +30,24 @@ public class StockServiceImpl {
 	}
 	
 	public void remove(long id) {
-		for(int i = 0; i < listStock.getListaStock().size(); i++) {
-			Stock stock = listStock.getListaStock().get(i);
-			if (stock.getId() == id) {
-				listStock.getListaStock().remove(i);
+		Iterator<Stock> stock = listStock.getListaStock().iterator();
+		while(stock.hasNext()) {
+			Stock elem = stock.next();
+			if (elem.getId() == id) {
+				listStock.getListaStock().remove(elem);
 			}
 		}
 	}
 	
 	public void modify(long idElementoBuscado, Stock elemento) {
 		boolean encontrado = false;
-		for(int i = 0; i < listStock.getListaStock().size(); i++) {
-			Stock stock = listStock.getListaStock().get(i);
-			if (stock.getId() == idElementoBuscado) {
-				listStock.getListaStock().set(i,elemento);
+		Iterator<Stock> stock = listStock.getListaStock().iterator();
+		while(stock.hasNext()) {
+			Stock elem = stock.next();
+			if (elem.getId() == idElementoBuscado) {
+				elem.setId(idElementoBuscado);
+				elem.setQuantity(elemento.getQuantity());
+				elem.setLocationCode(elemento.getLocationCode());
 				encontrado = true;
 			}
 		}
