@@ -1,5 +1,9 @@
 package ar.com.gl.shop.product.services;
 
-public interface StockService {
+import java.util.ArrayList;
 
+import ar.com.gl.shop.product.repository.RepositoryImpl;
+
+public interface StockService {
+	
 }
