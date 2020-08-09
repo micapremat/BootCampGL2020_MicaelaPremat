@@ -9,31 +9,42 @@ public class CategoryServiceImpl{
 	RepositoryImpl listCategory;
 	
 	public ArrayList<Category> create(){
-		this.listCategory = new RepositoryImpl();
-		return this.listCategory.getListaCategorias();
+		//this.listCategory.getInstance();
+		return this.listCategory.getInstance().getListaCategorias();
 	}
 	
-	public void read() {
-		for(Category listCat: listCategory.getListaCategorias() ) {
+	public ArrayList<Category> read() {
+		for(Category listCat: listCategory.getInstance().getListaCategorias() ) {
 			System.out.println("ID Categoría: " + listCat.getId());
 			System.out.println("Nombre: " + listCat.getName());
 			System.out.println("Descripción: " + listCat.getDescription());
 		}
+		return this.listCategory.getInstance().getListaCategorias();
 	}
 		
-	public void add(Category elemento) {
-		listCategory.getListaCategorias().add(elemento);
-	}
-	
-	public void remove(long id) {
-		for(Category listCat: new ArrayList<Category>(listCategory.getListaCategorias()) ) {
-			if (listCat.getId() == id) {
-				listCategory.getListaCategorias().remove(listCat);
+	public boolean add(Category elemento) {
+		for(Category listCat: listCategory.getInstance().getListaCategorias()) {
+			if (listCat.getId() == elemento.getId()) {
+				System.out.println("ID repetido");
+				return false;
 			}
 		}
+		System.out.println(listCategory.getInstance().getListaCategorias().add(elemento));
+		return listCategory.getInstance().getListaCategorias().add(elemento);
 	}
 	
-	public void modify(long idElementoBuscado, Category elemento) {
+	public String remove(long id) {
+		for(Category listCat: new ArrayList<Category>(listCategory.getInstance().getListaCategorias()) ) {
+			if (listCat.getId() == id) {
+				listCategory.getInstance().getListaCategorias().remove(listCat);
+				return "El elemento con ID: " + id + " ha sido eiminado";
+			}
+			
+		}
+		return "El elemento con ID: " + id + " no se encuentra";
+	}
+	
+	public String update(long idElementoBuscado, Category elemento) {
 		boolean encontrado = false;
 		for(Category listCat: listCategory.getListaCategorias() ) {
 			if (listCat.getId() == idElementoBuscado) {
@@ -44,7 +55,9 @@ public class CategoryServiceImpl{
 			}
 		}
 		if(!encontrado) {
-			System.out.println("El elemento con ID: " + idElementoBuscado + " no se encuentra en la lista");
+			return "El elemento con ID: " + idElementoBuscado + " no se encuentra en la lista";
+		}else {
+			return "El elemento: " + idElementoBuscado + " ha sido modificado corrctamente";
 		}
 	}
 }

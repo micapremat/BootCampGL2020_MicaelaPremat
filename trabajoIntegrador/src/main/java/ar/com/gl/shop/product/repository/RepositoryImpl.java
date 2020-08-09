@@ -7,9 +7,19 @@ import ar.com.gl.shop.product.model.Product;
 import ar.com.gl.shop.product.model.Stock;
 
 public class RepositoryImpl{
-	ArrayList<Product> listaProductos = new ArrayList<Product>();
-	ArrayList<Category> listaCategorias = new ArrayList<Category>();
-	ArrayList<Stock> listaStock = new ArrayList<Stock>();
+	private ArrayList<Product> listaProductos = new ArrayList<Product>();
+	private ArrayList<Category> listaCategorias = new ArrayList<Category>();
+	private ArrayList<Stock> listaStock = new ArrayList<Stock>();
+	
+	private static final RepositoryImpl instance = new RepositoryImpl();
+	
+	private RepositoryImpl() {
+		
+	}
+	
+	public static RepositoryImpl getInstance() {
+		return instance;
+	}
 
 	public ArrayList<Category> getListaCategorias(){
 		return listaCategorias;

@@ -14,11 +14,15 @@ public class Main {
 		CategoryServiceImpl categoryService = new CategoryServiceImpl();
 		StockServiceImpl stockService = new StockServiceImpl();
 		
-		RepositoryImpl repository = new RepositoryImpl();
+		RepositoryImpl repository;
 		
 		Category category1 = new Category(1,"Categoria 1","descripcion1");
 		Category category2 = new Category(2,"Categoria 2","descripcion2");
 		Category category3 = new Category(3,"Categoria 3","descripcion3");
+		Category category4 = new Category(1,"Categoria 4","descripcion4");
+		//if (categoryService.add(new Category(10,"category10","descripcion10"))) {
+		//	System.out.println("hola");
+		//}
 		
 		Stock stock1 = new Stock(1,20,"2354");
 		Stock stock2 = new Stock(2,10,"6985");
@@ -31,13 +35,15 @@ public class Main {
 		categoryService.add(category2);
 		categoryService.add(category3);
 		//categoryService.read();
-		categoryService.remove(1);
+		categoryService.remove(3);
+		categoryService.read();
+		categoryService.add(category4);
 		
 		stockService.add(stock1);
 		stockService.add(stock2);
 		stockService.add(stock3);
-		stockService.read();
-		stockService.remove(2);
+		//stockService.read();
+		stockService.remove(1);
 		stockService.read();
 		System.out.println("Ingrese el id del elemento a buscar");
 		long id = in.nextLong();
@@ -49,7 +55,7 @@ public class Main {
 		String locationCode = in.nextLine();
 		
 		Stock newStock = new Stock(id,quantity,locationCode);
-		stockService.modify(id, newStock);
+		stockService.update(id, newStock);
 		System.out.println("modificado");
 		stockService.read();
 	}
